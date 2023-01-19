@@ -54,7 +54,7 @@ tag ::=
             }
         :}
         | single_tag;
-single_tag ::= tag_opening:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
+single_tag ::= TAG_OPENING_START:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
 tag_opening ::= TAG_OPENING_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1.trim() + e2.trim(); System.out.println(getIndent() + RESULT); incrementIndentCount(); :};
 tag_attributes ::= tag_attribute tag_attributes | ;
 tag_attribute ::= TAG_ATTRIBUTE_NAME EQUALITY TAG_ATTRIBUTE_VALUE | TAG_ATTRIBUTE_NAME;

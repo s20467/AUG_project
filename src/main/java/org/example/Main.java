@@ -17,15 +17,15 @@ public class Main {
         FileReader reader = new FileReader("test.html");
         HTMLScanner scanner = new HTMLScanner(reader);
 
-//        MyParserClassName parser = new MyParserClassName(scanner);
-//
-//        parser.parse();
+        MyParserClassName parser = new MyParserClassName(scanner);
+
+        parser.parse();
 
 
-        Symbol token = scanner.next_token();
-        while (token.sym != sym.EOF) {
-            System.out.println("Token type: " + MySymbolsClassName.terminalNames[token.sym] + ", Token value: *" + token.value + "*");
-            token = scanner.next_token();
-        }
+//        Symbol token = scanner.next_token();
+//        while (token.sym != sym.EOF) {
+//            System.out.println("Token type: " + MySymbolsClassName.terminalNames[token.sym] + ", Token value: *" + token.value + "*");
+//            token = scanner.next_token();
+//        }
     }
 }
