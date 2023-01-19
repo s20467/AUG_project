@@ -2,17 +2,41 @@ package org.example;
 
 import java_cup.runtime.*;
 
+
+parser code {:
+  private static Integer indentCount = 0;
+  private static StringBuilder strb = new StringBuilder();
+
+  public static String getIndent() {
+    strb.setLength(0);
+    for(int i=0; i<indentCount; i++) {
+        strb.append("\t");
+    }
+    return strb.toString();
+  }
+
+  public static void incrementIndentCount() {
+    indentCount++;
+  }
+
+  public static void decrementIndentCount() {
+      indentCount--;
+    }
+
+:};
+
 /* Preliminaries to set up and use the scanner.  */
 //init with {: scanner.init();              :};
 scan with {: return this.getScanner().next_token(); :};
 
 
+
 /* Terminals (tokens returned by the scanner). */
-terminal            TAG_OPENING_START, TAG_OPENING_END, TAG_CLOSING, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE;
+terminal String           TAG_OPENING_START, TAG_OPENING_END, TAG_CLOSING, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE;
 
 
 /* Non terminals */
-non terminal            document, tag, tag_opening, tag_content, single_tag, tag_attributes, tag_attribute;
+non terminal String            document, tag, tag_opening, tag_content, single_tag, tag_attributes, tag_attribute, tag_closing, doctype;
 
 /* Precedences */
 //precedence left PLUS, MINUS;
@@ -20,33 +44,20 @@ non terminal            document, tag, tag_opening, tag_content, single_tag, tag
 //precedence left UMINUS;
 
 /* The grammar */
-document ::= DOCTYPE document {:
-            RESULT = "doctype";
-            System.out.println(RESULT);
-            :}
-        | tag document | CHAR_SEQUENCE document | ;
+document ::= doctype document | tag document | CHAR_SEQUENCE document | ;
 tag ::=
-        tag_opening:e1 tag_content TAG_CLOSING:e2 {:
-            String e2str = (String) e2;
-            e2str = e2str.trim();
-            e2str = e2str.substring(2, e2str.length()-1);
-            e2str = e2str.trim();
-//            System.out.println("e1: " + e1 + " e2str: " + e2str);
-            if(e2str.equals(e1)) {
-                RESULT = e1;
-                System.out.println(RESULT);
-            }
-            else {
+        tag_opening:e1 tag_content tag_closing:e2 {:
+            RESULT = e1;
+            e2 = e2.substring(0, 1) + e2.substring(2, e2.length());
+            if(!e2.equals(e1)) {
                 System.out.println("błąd");
             }
         :}
-      |
-        single_tag;
-single_tag ::= tag_opening:e1 tag_attributes SINGLE_TAG_END {:
-                RESULT = e1;
-                System.out.println(RESULT);
-            :};
-tag_opening ::= TAG_OPENING_START:e1 tag_attributes TAG_OPENING_END {: RESULT = ((String)e1).trim().substring(1).trim(); :};
+        | single_tag;
+single_tag ::= tag_opening:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
+tag_opening ::= TAG_OPENING_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1.trim() + e2.trim(); System.out.println(getIndent() + RESULT); incrementIndentCount(); :};
 tag_attributes ::= tag_attribute tag_attributes | ;
 tag_attribute ::= TAG_ATTRIBUTE_NAME EQUALITY TAG_ATTRIBUTE_VALUE | TAG_ATTRIBUTE_NAME;
 tag_content ::= CHAR_SEQUENCE tag_content | tag tag_content | ;
+tag_closing ::= TAG_CLOSING:e1 {: RESULT = e1; decrementIndentCount(); System.out.println(getIndent() + RESULT); :};
+doctype ::= DOCTYPE:e1  {: RESULT = e1; System.out.println(getIndent() + RESULT); :};

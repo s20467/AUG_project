@@ -31,12 +31,12 @@ public class MyParserClassName extends lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\020\000\002\002\004\000\002\002\004\000\002\002" +
+    "\000\022\000\002\002\004\000\002\002\004\000\002\002" +
     "\004\000\002\002\004\000\002\002\002\000\002\003\005" +
     "\000\002\003\003\000\002\006\005\000\002\004\005\000" +
     "\002\007\004\000\002\007\002\000\002\010\005\000\002" +
     "\010\003\000\002\005\004\000\002\005\004\000\002\005" +
-    "\002" });
+    "\002\000\002\011\003\000\002\012\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -44,24 +44,26 @@ public class MyParserClassName extends lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\033\000\012\002\ufffd\004\006\012\010\014\012\001" +
-    "\002\000\004\002\035\001\002\000\012\002\ufffd\004\006" +
-    "\012\010\014\012\001\002\000\006\005\ufff7\010\014\001" +
-    "\002\000\014\002\ufffb\004\ufffb\006\ufffb\012\ufffb\014\ufffb" +
-    "\001\002\000\012\002\ufffd\004\006\012\010\014\012\001" +
-    "\002\000\014\004\006\006\ufff2\007\ufff7\010\014\012\020" +
-    "\001\002\000\012\002\ufffd\004\006\012\010\014\012\001" +
-    "\002\000\004\002\001\001\002\000\012\005\ufff5\007\ufff5" +
-    "\010\ufff5\013\027\001\002\000\004\007\026\001\002\000" +
-    "\010\005\ufff7\007\ufff7\010\014\001\002\000\004\006\024" +
-    "\001\002\000\010\004\006\006\ufff2\012\020\001\002\000" +
-    "\010\004\006\006\ufff2\012\020\001\002\000\004\006\ufff3" +
-    "\001\002\000\004\006\ufff4\001\002\000\014\002\ufffc\004" +
-    "\ufffc\006\ufffc\012\ufffc\014\ufffc\001\002\000\006\005\ufff8" +
-    "\007\ufff8\001\002\000\014\002\ufffa\004\ufffa\006\ufffa\012" +
-    "\ufffa\014\ufffa\001\002\000\004\011\030\001\002\000\010" +
-    "\005\ufff6\007\ufff6\010\ufff6\001\002\000\004\002\ufffe\001" +
-    "\002\000\004\005\033\001\002\000\014\004\ufff9\006\ufff9" +
+    "\000\035\000\012\002\ufffd\004\006\012\011\014\013\001" +
+    "\002\000\004\002\037\001\002\000\012\002\ufffd\004\006" +
+    "\012\011\014\013\001\002\000\006\005\ufff7\010\014\001" +
+    "\002\000\012\002\ufffd\004\006\012\011\014\013\001\002" +
+    "\000\014\002\ufffb\004\ufffb\006\ufffb\012\ufffb\014\ufffb\001" +
+    "\002\000\012\002\ufffd\004\006\012\011\014\013\001\002" +
+    "\000\014\004\006\006\ufff2\007\ufff7\010\014\012\020\001" +
+    "\002\000\012\002\ufff0\004\ufff0\012\ufff0\014\ufff0\001\002" +
+    "\000\012\005\ufff5\007\ufff5\010\ufff5\013\030\001\002\000" +
+    "\004\007\027\001\002\000\010\005\ufff7\007\ufff7\010\014" +
+    "\001\002\000\004\006\024\001\002\000\010\004\006\006" +
+    "\ufff2\012\020\001\002\000\010\004\006\006\ufff2\012\020" +
+    "\001\002\000\004\006\ufff3\001\002\000\004\006\ufff4\001" +
+    "\002\000\014\002\ufff1\004\ufff1\006\ufff1\012\ufff1\014\ufff1" +
+    "\001\002\000\014\002\ufffc\004\ufffc\006\ufffc\012\ufffc\014" +
+    "\ufffc\001\002\000\006\005\ufff8\007\ufff8\001\002\000\014" +
+    "\002\ufffa\004\ufffa\006\ufffa\012\ufffa\014\ufffa\001\002\000" +
+    "\004\011\031\001\002\000\010\005\ufff6\007\ufff6\010\ufff6" +
+    "\001\002\000\004\002\ufffe\001\002\000\004\002\001\001" +
+    "\002\000\004\005\035\001\002\000\014\004\ufff9\006\ufff9" +
     "\007\ufff9\010\ufff9\012\ufff9\001\002\000\004\002\uffff\001" +
     "\002\000\004\002\000\001\002" });
 
@@ -71,20 +73,22 @@ public class MyParserClassName extends lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\033\000\012\002\003\003\004\004\010\006\006\001" +
-    "\001\000\002\001\001\000\012\002\033\003\004\004\010" +
-    "\006\006\001\001\000\006\007\031\010\015\001\001\000" +
-    "\002\001\001\000\012\002\030\003\004\004\010\006\006" +
-    "\001\001\000\016\003\020\004\010\005\016\006\006\007" +
-    "\014\010\015\001\001\000\012\002\012\003\004\004\010" +
-    "\006\006\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\006\007\024\010\015\001\001\000\002" +
-    "\001\001\000\012\003\020\004\010\005\022\006\006\001" +
-    "\001\000\012\003\020\004\010\005\021\006\006\001\001" +
+    "\000\035\000\014\002\003\003\004\004\011\006\007\012" +
+    "\006\001\001\000\002\001\001\000\014\002\035\003\004" +
+    "\004\011\006\007\012\006\001\001\000\006\007\033\010" +
+    "\015\001\001\000\014\002\032\003\004\004\011\006\007" +
+    "\012\006\001\001\000\002\001\001\000\014\002\031\003" +
+    "\004\004\011\006\007\012\006\001\001\000\016\003\020" +
+    "\004\011\005\016\006\007\007\014\010\015\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\006" +
+    "\007\025\010\015\001\001\000\004\011\024\001\001\000" +
+    "\012\003\020\004\011\005\022\006\007\001\001\000\012" +
+    "\003\020\004\011\005\021\006\007\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001" });
+    "\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -129,6 +133,28 @@ public class MyParserClassName extends lr_parser {
  return this.getScanner().next_token(); 
     }
 
+
+  private static Integer indentCount = 0;
+  private static StringBuilder strb = new StringBuilder();
+
+  public static String getIndent() {
+    strb.setLength(0);
+    for(int i=0; i<indentCount; i++) {
+        strb.append("\t");
+    }
+    return strb.toString();
+  }
+
+  public static void incrementIndentCount() {
+    indentCount++;
+  }
+
+  public static void decrementIndentCount() {
+      indentCount--;
+    }
+
+
+
 /** Cup generated class to encapsulate user supplied action code.*/
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 class CUP$MyParserClassName$actions {
@@ -154,13 +180,10 @@ class CUP$MyParserClassName$actions {
       switch (CUP$MyParserClassName$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // document ::= DOCTYPE document 
+          case 0: // document ::= doctype document 
             {
-              Object RESULT =null;
-		
-            RESULT = "doctype";
-            System.out.println(RESULT);
-            
+              String RESULT =null;
+
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("document",0, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
           return CUP$MyParserClassName$result;
@@ -171,7 +194,7 @@ class CUP$MyParserClassName$actions {
               Object RESULT =null;
 		int start_valleft = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)).left;
 		int start_valright = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)).right;
-		Object start_val = (Object)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)).value;
+		String start_val = (String)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)).value;
 		RESULT = start_val;
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("$START",0, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -182,7 +205,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 2: // document ::= tag document 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("document",0, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -191,7 +214,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // document ::= CHAR_SEQUENCE document 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("document",0, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -200,33 +223,26 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // document ::= 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("document",0, ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
           return CUP$MyParserClassName$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // tag ::= tag_opening tag_content TAG_CLOSING 
+          case 5: // tag ::= tag_opening tag_content tag_closing 
             {
-              Object RESULT =null;
+              String RESULT =null;
 		int e1left = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).left;
 		int e1right = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).right;
-		Object e1 = (Object)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
+		String e1 = (String)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
 		int e2left = ((Symbol)CUP$MyParserClassName$stack.peek()).left;
 		int e2right = ((Symbol)CUP$MyParserClassName$stack.peek()).right;
-		Object e2 = (Object)((Symbol) CUP$MyParserClassName$stack.peek()).value;
+		String e2 = (String)((Symbol) CUP$MyParserClassName$stack.peek()).value;
 		
-            String e2str = (String) e2;
-            e2str = e2str.trim();
-            e2str = e2str.substring(2, e2str.length()-1);
-            e2str = e2str.trim();
-//            System.out.println("e1: " + e1 + " e2str: " + e2str);
-            if(e2str.equals(e1)) {
-                RESULT = e1;
-                System.out.println(RESULT);
-            }
-            else {
+            RESULT = e1;
+            e2 = e2.substring(0, 1) + e2.substring(2, e2.length());
+            if(!e2.equals(e1)) {
                 System.out.println("błąd");
             }
         
@@ -237,7 +253,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // tag ::= single_tag 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag",1, ((Symbol)CUP$MyParserClassName$stack.peek()), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -246,14 +262,14 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // single_tag ::= tag_opening tag_attributes SINGLE_TAG_END 
             {
-              Object RESULT =null;
+              String RESULT =null;
 		int e1left = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).left;
 		int e1right = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).right;
-		Object e1 = (Object)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
-		
-                RESULT = e1;
-                System.out.println(RESULT);
-            
+		String e1 = (String)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
+		int e2left = ((Symbol)CUP$MyParserClassName$stack.peek()).left;
+		int e2right = ((Symbol)CUP$MyParserClassName$stack.peek()).right;
+		String e2 = (String)((Symbol) CUP$MyParserClassName$stack.peek()).value;
+		 RESULT = e1 + e2; System.out.println(getIndent() + RESULT); 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("single_tag",4, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
           return CUP$MyParserClassName$result;
@@ -261,11 +277,14 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // tag_opening ::= TAG_OPENING_START tag_attributes TAG_OPENING_END 
             {
-              Object RESULT =null;
+              String RESULT =null;
 		int e1left = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).left;
 		int e1right = ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).right;
-		Object e1 = (Object)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
-		 RESULT = ((String)e1).trim().substring(1).trim(); 
+		String e1 = (String)((Symbol) CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)).value;
+		int e2left = ((Symbol)CUP$MyParserClassName$stack.peek()).left;
+		int e2right = ((Symbol)CUP$MyParserClassName$stack.peek()).right;
+		String e2 = (String)((Symbol) CUP$MyParserClassName$stack.peek()).value;
+		 RESULT = e1.trim() + e2.trim(); System.out.println(getIndent() + RESULT); incrementIndentCount(); 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_opening",2, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
           return CUP$MyParserClassName$result;
@@ -273,7 +292,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // tag_attributes ::= tag_attribute tag_attributes 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_attributes",5, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -282,7 +301,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // tag_attributes ::= 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_attributes",5, ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -291,7 +310,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // tag_attribute ::= TAG_ATTRIBUTE_NAME EQUALITY TAG_ATTRIBUTE_VALUE 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_attribute",6, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-2)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -300,7 +319,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 12: // tag_attribute ::= TAG_ATTRIBUTE_NAME 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_attribute",6, ((Symbol)CUP$MyParserClassName$stack.peek()), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -309,7 +328,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 13: // tag_content ::= CHAR_SEQUENCE tag_content 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_content",3, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -318,7 +337,7 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 14: // tag_content ::= tag tag_content 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_content",3, ((Symbol)CUP$MyParserClassName$stack.elementAt(CUP$MyParserClassName$top-1)), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
@@ -327,9 +346,33 @@ class CUP$MyParserClassName$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 15: // tag_content ::= 
             {
-              Object RESULT =null;
+              String RESULT =null;
 
               CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_content",3, ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
+            }
+          return CUP$MyParserClassName$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // tag_closing ::= TAG_CLOSING 
+            {
+              String RESULT =null;
+		int e1left = ((Symbol)CUP$MyParserClassName$stack.peek()).left;
+		int e1right = ((Symbol)CUP$MyParserClassName$stack.peek()).right;
+		String e1 = (String)((Symbol) CUP$MyParserClassName$stack.peek()).value;
+		 RESULT = e1; decrementIndentCount(); System.out.println(getIndent() + RESULT); 
+              CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("tag_closing",7, ((Symbol)CUP$MyParserClassName$stack.peek()), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
+            }
+          return CUP$MyParserClassName$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // doctype ::= DOCTYPE 
+            {
+              String RESULT =null;
+		int e1left = ((Symbol)CUP$MyParserClassName$stack.peek()).left;
+		int e1right = ((Symbol)CUP$MyParserClassName$stack.peek()).right;
+		String e1 = (String)((Symbol) CUP$MyParserClassName$stack.peek()).value;
+		 RESULT = e1; System.out.println(getIndent() + RESULT); 
+              CUP$MyParserClassName$result = parser.getSymbolFactory().newSymbol("doctype",8, ((Symbol)CUP$MyParserClassName$stack.peek()), ((Symbol)CUP$MyParserClassName$stack.peek()), RESULT);
             }
           return CUP$MyParserClassName$result;
 
