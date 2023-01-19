@@ -9,22 +9,24 @@ package org.example;
 public interface MySymbolsClassName {
   /* terminals */
   public static final int TAG_CLOSING = 4;
-  public static final int TAG_ATTRIBUTE_NAME = 6;
-  public static final int SINGLE_TAG_END = 5;
+  public static final int TAG_ATTRIBUTE_NAME = 7;
+  public static final int SINGLE_TAG_END = 6;
   public static final int TAG_OPENING_START = 2;
   public static final int EOF = 0;
   public static final int error = 1;
-  public static final int CHAR_SEQUENCE = 8;
+  public static final int CHAR_SEQUENCE = 9;
   public static final int TAG_OPENING_END = 3;
-  public static final int EQUALITY = 9;
-  public static final int DOCTYPE = 10;
-  public static final int TAG_ATTRIBUTE_VALUE = 7;
+  public static final int EQUALITY = 10;
+  public static final int SINGLE_TAG_START = 5;
+  public static final int DOCTYPE = 11;
+  public static final int TAG_ATTRIBUTE_VALUE = 8;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "TAG_OPENING_START",
   "TAG_OPENING_END",
   "TAG_CLOSING",
+  "SINGLE_TAG_START",
   "SINGLE_TAG_END",
   "TAG_ATTRIBUTE_NAME",
   "TAG_ATTRIBUTE_VALUE",

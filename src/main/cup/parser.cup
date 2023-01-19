@@ -32,7 +32,7 @@ scan with {: return this.getScanner().next_token(); :};
 
 
 /* Terminals (tokens returned by the scanner). */
-terminal String           TAG_OPENING_START, TAG_OPENING_END, TAG_CLOSING, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE;
+terminal String           TAG_OPENING_START, TAG_OPENING_END, TAG_CLOSING, SINGLE_TAG_START, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE;
 
 
 /* Non terminals */
@@ -54,7 +54,8 @@ tag ::=
             }
         :}
         | single_tag;
-single_tag ::= TAG_OPENING_START:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
+single_tag ::= SINGLE_TAG_START:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :}
+        | SINGLE_TAG_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
 tag_opening ::= TAG_OPENING_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1.trim() + e2.trim(); System.out.println(getIndent() + RESULT); incrementIndentCount(); :};
 tag_attributes ::= tag_attribute tag_attributes | ;
 tag_attribute ::= TAG_ATTRIBUTE_NAME EQUALITY TAG_ATTRIBUTE_VALUE | TAG_ATTRIBUTE_NAME;
