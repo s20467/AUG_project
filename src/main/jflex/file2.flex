@@ -171,7 +171,12 @@ TagClosing=<\/{AlphanumericSequence}+>
 //SingleTagStart=<{AlphanumericSequence}+
 SingleTagEnd=\/>
 
-Comment=<!--(.*?)-->
+Comment=<\!--(.*)-->
+
+CommentStart=<\!--
+CommentEnd=-->
+
+
 
 //ok=<\!DOCTYPE.+
 
@@ -180,12 +185,13 @@ Comment=<!--(.*?)-->
 
 %state TAG_INSIDE
 %state ATTRIBUTE_VALUE
+%state COMMENT
 
 %%
 
 /* keywords */
 <YYINITIAL> {
-  {Comment}                 { /* ignore */ }
+  {CommentStart}            { yybegin(COMMENT); }
   {WhiteSpace}+             { /* ignore */ }
   {Doctype}                 { return symbol(MySymbolsClassName.DOCTYPE, yytext()); }
   {TagOpeningStart}         {
@@ -206,7 +212,7 @@ Comment=<!--(.*?)-->
 }
 
 <TAG_INSIDE> {
-  {Comment}                 { /* ignore */ }
+  {CommentStart}            { yybegin(COMMENT); }
   {TagOpeningEnd}           {
                                 yybegin(YYINITIAL);
                                 return symbol(MySymbolsClassName.TAG_OPENING_END, yytext());
@@ -229,6 +235,11 @@ Comment=<!--(.*?)-->
                                                     yybegin(TAG_INSIDE);
                                                     return symbol(MySymbolsClassName.TAG_ATTRIBUTE_VALUE, yytext());
                                                 }
+}
+
+<COMMENT> {
+  {CommentEnd}              { yybegin(YYINITIAL); }
+  .                         { /* ignore */ }
 }
 
 
