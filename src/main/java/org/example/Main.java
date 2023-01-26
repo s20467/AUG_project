@@ -18,7 +18,6 @@ public class Main {
         HTMLScanner scanner = new HTMLScanner(reader);
 
         MyParserClassName parser = new MyParserClassName(scanner);
-
         parser.parse();
 
 

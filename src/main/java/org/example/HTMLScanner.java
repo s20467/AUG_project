@@ -4,7 +4,10 @@ package org.example;// DO NOT EDIT
 
 /* JFlex example: partial Java language lexer specification */
 import java_cup.runtime.*;
-import java_cup.sym;import org.example.MySymbolsClassName;
+import java_cup.sym;
+import org.example.MySymbolsClassName;
+import java.util.Map;
+import static java.util.Map.entry;
 
 /**
  * This class is a simple example lexer.
@@ -74,9 +77,9 @@ class HTMLScanner implements Scanner {
     "\3\12\2\0\1\14\1\15\1\16\2\0\2\17\1\20"+
     "\1\21\1\22\11\17\1\23\1\24\3\17\1\25\4\17"+
     "\1\26\1\17\6\0\1\27\1\30\1\31\1\32\1\33"+
-    "\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43"+
-    "\1\44\1\45\1\46\1\47\1\50\1\51\1\52\1\53"+
-    "\1\54\1\55\1\56\1\57\1\17\12\0\1\3\u01a2\0"+
+    "\1\34\1\35\1\36\1\37\1\17\1\40\1\41\1\42"+
+    "\1\43\1\44\1\45\1\17\1\46\1\47\1\50\1\51"+
+    "\1\52\1\17\1\53\1\54\1\17\12\0\1\3\u01a2\0"+
     "\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
@@ -105,15 +108,13 @@ class HTMLScanner implements Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\3\0\1\1\2\2\1\0\1\3\2\0\1\4\1\5"+
-    "\1\6\2\7\4\0\2\10\5\0\1\10\5\0\2\10"+
-    "\1\0\1\10\1\0\1\10\2\0\1\11\20\0\1\12"+
-    "\11\0\1\10\15\0\1\10\26\0\1\10\1\0\1\10"+
-    "\3\0\1\7\2\0\1\13\17\0\1\12\52\0\1\2"+
-    "\5\0\1\12\16\0\1\10\5\0\1\10\25\0\1\10"+
-    "\27\0\1\14";
+    "\1\6\2\7\4\0\2\10\3\0\1\10\4\0\1\10"+
+    "\2\0\1\10\1\11\6\0\1\12\10\0\1\10\11\0"+
+    "\1\10\1\0\1\7\2\0\1\13\23\0\1\2\3\0"+
+    "\1\10\24\0\1\14";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[246];
+    int [] result = new int[110];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -138,40 +139,23 @@ class HTMLScanner implements Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\60\0\140\0\220\0\300\0\360\0\u0120\0\220"+
-    "\0\u0150\0\u0180\0\u01b0\0\u01b0\0\u01e0\0\u0210\0\140\0\u0240"+
-    "\0\u0270\0\u02a0\0\u02d0\0\u0300\0\u0330\0\u0360\0\u0390\0\u03c0"+
-    "\0\u03f0\0\u0420\0\u0450\0\u0480\0\u04b0\0\u04e0\0\u0510\0\u0540"+
-    "\0\u0570\0\u0180\0\u05a0\0\u05d0\0\u0600\0\u0630\0\u0660\0\u0690"+
-    "\0\u01b0\0\u06c0\0\u06f0\0\u0720\0\u0750\0\u0780\0\u07b0\0\u07e0"+
-    "\0\u0810\0\u0840\0\u0870\0\u08a0\0\u08d0\0\u0900\0\u0930\0\u0960"+
-    "\0\u0990\0\u0180\0\u09c0\0\u09f0\0\u0a20\0\u0a50\0\u0a80\0\u0ab0"+
-    "\0\u0ae0\0\u0b10\0\u0b40\0\u0b70\0\u0ba0\0\u0bd0\0\u0c00\0\u0c30"+
-    "\0\u0c60\0\u0c90\0\u0cc0\0\u0cf0\0\u0d20\0\u0d50\0\u0d80\0\u0db0"+
-    "\0\u0de0\0\u0e10\0\u0e40\0\u0e70\0\u0ea0\0\u0ed0\0\u0f00\0\u0f30"+
-    "\0\u0f60\0\u0f90\0\u0fc0\0\u0ff0\0\u1020\0\u1050\0\u1080\0\u10b0"+
-    "\0\u10e0\0\u1110\0\u1140\0\u1170\0\u11a0\0\u11d0\0\u1200\0\u1230"+
-    "\0\u1260\0\u1290\0\u12c0\0\u12f0\0\u1320\0\u1350\0\u01b0\0\u1380"+
-    "\0\u13b0\0\u0180\0\u13e0\0\u1410\0\u1440\0\u1470\0\u14a0\0\u14d0"+
-    "\0\u1500\0\u1530\0\u1560\0\u1590\0\u15c0\0\u15f0\0\u1620\0\u1650"+
-    "\0\u1680\0\u16b0\0\u16e0\0\u1710\0\u1740\0\u1770\0\u17a0\0\u17d0"+
-    "\0\u1800\0\u1830\0\u1860\0\u1890\0\u18c0\0\u18f0\0\u0630\0\u1920"+
-    "\0\u1950\0\u1980\0\u19b0\0\u19e0\0\u1a10\0\u1a40\0\u1a70\0\u1aa0"+
-    "\0\u1ad0\0\u1b00\0\u1b30\0\u1b60\0\u1b90\0\u1bc0\0\u1bf0\0\u1c20"+
-    "\0\u1c50\0\u1c80\0\u1cb0\0\u1ce0\0\u1d10\0\u1d40\0\u1d70\0\u1da0"+
-    "\0\u1dd0\0\u1e00\0\u1e30\0\u1e60\0\u02a0\0\u1e90\0\u1ec0\0\u1ef0"+
-    "\0\u1f20\0\u1f50\0\u1f80\0\u1fb0\0\u1fe0\0\u2010\0\u2040\0\u2070"+
-    "\0\u20a0\0\u20d0\0\u2100\0\u2130\0\u2160\0\u2190\0\u21c0\0\u21f0"+
-    "\0\u2220\0\u2070\0\u2250\0\u2280\0\u22b0\0\u22e0\0\u2310\0\u2340"+
-    "\0\u2370\0\u23a0\0\u23d0\0\u2400\0\u2430\0\u2460\0\u2490\0\u24c0"+
-    "\0\u24f0\0\u2520\0\u2550\0\u2580\0\u25b0\0\u25e0\0\u2610\0\u2640"+
-    "\0\u2670\0\u26a0\0\u26d0\0\u2700\0\u2730\0\u2700\0\u2760\0\u2790"+
-    "\0\u27c0\0\u27f0\0\u2820\0\u2850\0\u2880\0\u28b0\0\u28e0\0\u2910"+
-    "\0\u2940\0\u2970\0\u29a0\0\u29d0\0\u2a00\0\u2a30\0\u2a60\0\u2a90"+
-    "\0\u2ac0\0\u2af0\0\u2b20\0\u2b50\0\u2b80\0\u0180";
+    "\0\0\0\55\0\132\0\207\0\264\0\341\0\u010e\0\207"+
+    "\0\u013b\0\u0168\0\u0195\0\u0195\0\u01c2\0\u01ef\0\132\0\u021c"+
+    "\0\u0249\0\u0276\0\u02a3\0\u02d0\0\u02fd\0\u032a\0\u0357\0\u0384"+
+    "\0\u03b1\0\u03de\0\u040b\0\u0438\0\u0465\0\u0168\0\u0492\0\u04bf"+
+    "\0\u04ec\0\u0195\0\u0519\0\u0546\0\u0573\0\u05a0\0\u05cd\0\u05fa"+
+    "\0\u0168\0\u0627\0\u0654\0\u0681\0\u06ae\0\u06db\0\u0708\0\u0735"+
+    "\0\u0762\0\u078f\0\u07bc\0\u07e9\0\u0816\0\u0843\0\u0870\0\u089d"+
+    "\0\u08ca\0\u08f7\0\u0924\0\u0951\0\u097e\0\u0195\0\u09ab\0\u09d8"+
+    "\0\u0168\0\u0a05\0\u0a32\0\u0a5f\0\u0a8c\0\u0ab9\0\u0ae6\0\u04ec"+
+    "\0\u0b13\0\u0b40\0\u0b6d\0\u0b9a\0\u0bc7\0\u0bf4\0\u0c21\0\u0c4e"+
+    "\0\u0c7b\0\u0ca8\0\u0cd5\0\u0d02\0\u0276\0\u0d2f\0\u0d5c\0\u0d89"+
+    "\0\u0d89\0\u0db6\0\u0de3\0\u0e10\0\u0e3d\0\u0e6a\0\u0e97\0\u0ec4"+
+    "\0\u0ef1\0\u0f1e\0\u0f4b\0\u0f78\0\u0fa5\0\u0fd2\0\u0fff\0\u102c"+
+    "\0\u1059\0\u1086\0\u10b3\0\u10e0\0\u110d\0\u0168";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[246];
+    int [] result = new int[110];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -195,153 +179,70 @@ class HTMLScanner implements Scanner {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\4\1\5\1\6\1\4\1\5\1\6\6\4\1\7"+
-    "\1\10\42\4\1\0\2\6\1\0\2\6\3\0\1\11"+
-    "\2\0\1\12\1\13\1\14\41\15\1\16\1\17\1\3"+
-    "\1\16\1\17\1\3\1\16\1\20\6\16\1\0\41\16"+
-    "\2\4\1\0\2\4\1\0\6\4\1\0\44\4\1\5"+
-    "\1\6\1\4\1\5\1\6\6\4\1\0\43\4\1\0"+
-    "\2\6\1\0\2\6\52\0\6\12\1\21\1\12\1\22"+
-    "\1\23\15\12\1\24\1\25\1\26\1\27\1\30\1\31"+
-    "\1\12\1\32\1\33\1\12\1\34\1\35\1\36\1\37"+
-    "\1\40\1\41\1\42\1\43\1\44\1\45\1\46\1\47"+
-    "\1\50\2\12\16\0\1\51\41\0\10\12\1\22\47\12"+
-    "\77\0\41\15\2\16\1\0\2\16\1\0\1\16\1\0"+
-    "\6\16\1\0\41\16\2\52\1\0\2\52\1\0\1\52"+
-    "\1\0\50\52\10\12\1\22\10\12\1\53\36\12\2\22"+
-    "\4\12\2\22\1\54\47\22\10\12\1\22\1\12\2\55"+
-    "\3\12\41\55\10\12\1\22\17\12\1\56\1\57\1\60"+
-    "\13\12\1\61\1\12\1\62\1\63\1\12\1\64\14\12"+
-    "\1\22\16\12\1\65\2\12\1\66\4\12\1\67\2\12"+
-    "\1\70\2\12\1\71\2\12\1\72\2\12\1\73\14\12"+
-    "\1\22\16\12\1\74\3\12\1\75\3\12\1\76\5\12"+
-    "\1\77\22\12\1\22\16\12\1\100\2\12\1\42\1\101"+
-    "\1\102\2\12\1\103\2\12\1\42\7\12\1\42\15\12"+
-    "\1\22\32\12\1\104\24\12\1\22\26\12\1\105\5\12"+
-    "\1\106\2\12\1\107\17\12\1\22\2\12\1\42\17\12"+
-    "\1\110\1\12\1\111\12\12\1\72\1\12\1\112\15\12"+
-    "\1\22\23\12\1\113\6\12\1\114\1\115\23\12\1\22"+
-    "\17\12\1\116\2\12\1\117\34\12\1\22\16\12\1\120"+
-    "\3\12\1\121\3\12\1\122\30\12\1\22\16\12\1\123"+
-    "\3\12\1\124\34\12\1\22\16\12\1\125\15\12\1\126"+
-    "\22\12\1\22\17\12\1\127\11\12\1\42\3\12\1\130"+
-    "\4\12\1\131\14\12\1\22\16\12\1\132\20\12\1\133"+
-    "\17\12\1\22\35\12\1\42\3\12\1\42\1\134\14\12"+
-    "\1\22\16\12\1\135\1\12\1\136\1\12\1\137\7\12"+
-    "\1\140\1\12\1\141\1\142\3\12\1\143\1\144\14\12"+
-    "\1\22\16\12\1\145\1\146\1\12\1\42\1\147\1\150"+
-    "\1\12\1\151\1\152\10\12\1\153\1\12\1\42\15\12"+
-    "\1\22\31\12\1\42\25\12\1\22\16\12\1\154\7\12"+
-    "\1\155\30\12\1\22\17\12\1\156\27\12\2\52\1\0"+
-    "\2\52\1\0\1\52\1\157\50\52\10\12\1\22\12\12"+
-    "\1\160\34\12\2\22\4\12\2\22\1\161\47\22\10\12"+
-    "\1\22\1\12\2\55\2\12\1\162\41\55\10\12\1\22"+
-    "\17\12\1\154\37\12\1\22\37\12\1\163\17\12\1\22"+
-    "\21\12\1\164\35\12\1\22\35\12\1\165\21\12\1\22"+
-    "\22\12\1\166\16\12\1\167\15\12\1\22\26\12\1\170"+
-    "\30\12\1\22\21\12\1\171\35\12\1\22\40\12\1\172"+
-    "\16\12\1\22\26\12\1\42\5\12\1\42\22\12\1\22"+
-    "\24\12\1\42\32\12\1\22\34\12\1\173\22\12\1\22"+
-    "\21\12\1\174\35\12\1\22\41\12\1\175\15\12\1\22"+
-    "\33\12\1\176\1\12\1\177\21\12\1\22\33\12\1\200"+
-    "\23\12\1\22\41\12\1\201\15\12\1\22\21\12\1\201"+
-    "\7\12\1\202\1\203\24\12\1\22\41\12\1\204\15\12"+
-    "\1\22\31\12\1\42\7\12\1\205\15\12\1\22\33\12"+
-    "\1\42\23\12\1\22\16\12\1\206\20\12\1\42\3\12"+
-    "\1\42\13\12\1\22\17\12\1\207\37\12\1\22\22\12"+
-    "\1\210\1\12\1\211\32\12\1\22\33\12\1\212\1\200"+
-    "\2\12\1\213\17\12\1\22\16\12\1\214\40\12\1\22"+
-    "\16\12\1\215\40\12\1\22\37\12\1\216\17\12\1\22"+
-    "\32\12\1\217\24\12\1\22\37\12\1\220\17\12\1\22"+
-    "\24\12\1\72\32\12\1\22\35\12\1\221\2\12\1\42"+
-    "\16\12\1\22\21\12\1\42\35\12\1\22\46\12\1\222"+
-    "\10\12\1\22\17\12\1\223\37\12\1\22\24\12\1\224"+
-    "\32\12\1\22\33\12\1\225\23\12\1\22\35\12\1\42"+
-    "\1\12\1\226\17\12\1\22\33\12\1\227\5\12\1\230"+
-    "\15\12\1\22\43\12\1\42\13\12\1\22\23\12\1\231"+
-    "\14\12\1\232\16\12\1\22\27\12\1\233\27\12\1\22"+
-    "\41\12\1\234\15\12\1\22\41\12\1\235\15\12\1\22"+
-    "\37\12\1\236\17\12\1\22\22\12\1\42\11\12\1\237"+
-    "\22\12\1\22\17\12\1\174\37\12\1\22\32\12\1\240"+
-    "\24\12\1\22\37\12\1\241\17\12\1\22\20\12\1\177"+
-    "\10\12\1\233\25\12\1\22\16\12\1\242\40\12\1\22"+
-    "\42\12\1\243\14\12\1\22\16\12\1\102\40\12\1\22"+
-    "\37\12\1\244\6\12\1\245\10\12\1\22\17\12\1\42"+
-    "\12\12\1\246\2\12\1\42\21\12\1\22\17\12\1\245"+
-    "\37\12\1\22\34\12\1\71\22\12\1\22\45\12\1\247"+
-    "\11\12\1\22\34\12\1\250\22\12\1\22\22\12\1\251"+
-    "\34\12\1\22\32\12\1\201\6\12\1\245\15\12\1\22"+
-    "\16\12\1\252\40\12\1\22\37\12\1\42\17\12\1\22"+
-    "\21\12\1\253\35\12\1\22\37\12\1\72\17\12\1\22"+
-    "\7\12\1\254\37\12\2\22\4\12\2\22\1\161\5\22"+
-    "\1\255\41\22\10\12\1\22\34\12\1\256\22\12\1\22"+
-    "\37\12\1\257\17\12\1\22\31\12\1\260\25\12\1\22"+
-    "\16\12\1\72\40\12\1\22\26\12\1\261\30\12\1\22"+
-    "\21\12\1\201\35\12\1\22\26\12\1\262\30\12\1\22"+
-    "\22\12\1\263\34\12\1\22\20\12\1\264\36\12\1\22"+
-    "\46\12\1\42\10\12\1\22\41\12\1\265\15\12\1\22"+
-    "\43\12\1\266\13\12\1\22\41\12\1\267\15\12\1\22"+
-    "\41\12\1\270\15\12\1\22\22\12\1\42\34\12\1\22"+
-    "\24\12\1\111\32\12\1\22\32\12\1\271\24\12\1\22"+
-    "\16\12\1\272\40\12\1\22\16\12\1\273\40\12\1\22"+
-    "\31\12\1\274\25\12\1\22\22\12\1\275\34\12\1\22"+
-    "\31\12\1\276\25\12\1\22\20\12\1\277\21\12\1\300"+
-    "\14\12\1\22\41\12\1\42\15\12\1\22\32\12\1\42"+
-    "\24\12\1\22\32\12\1\301\24\12\1\22\21\12\1\302"+
-    "\35\12\1\22\34\12\1\303\22\12\1\22\16\12\1\304"+
-    "\40\12\1\22\42\12\1\305\14\12\1\22\24\12\1\306"+
-    "\32\12\1\22\22\12\1\217\34\12\1\22\22\12\1\307"+
-    "\34\12\1\22\30\12\1\72\26\12\1\22\30\12\1\42"+
-    "\26\12\1\22\42\12\1\310\14\12\1\22\16\12\1\72"+
-    "\3\12\1\154\34\12\1\22\37\12\1\311\17\12\1\22"+
-    "\20\12\1\136\36\12\1\22\22\12\1\312\34\12\1\22"+
-    "\24\12\1\111\1\12\1\265\30\12\1\22\35\12\1\313"+
-    "\21\12\1\22\16\12\1\314\40\12\1\22\24\12\1\164"+
-    "\32\12\1\22\35\12\1\42\21\12\1\22\26\12\1\315"+
-    "\30\12\1\22\31\12\1\217\25\12\1\22\37\12\1\316"+
-    "\17\12\1\22\26\12\1\317\5\12\1\320\22\12\1\22"+
-    "\31\12\1\201\25\12\1\22\32\12\1\321\24\12\1\22"+
-    "\41\12\1\322\15\12\1\22\34\12\1\212\22\12\1\22"+
-    "\16\12\1\116\40\12\1\22\20\12\1\225\36\12\1\22"+
-    "\22\12\1\262\34\12\1\22\14\12\1\323\42\12\1\22"+
-    "\33\12\1\324\23\12\1\22\22\12\1\325\34\12\1\22"+
-    "\22\12\1\212\34\12\1\22\20\12\1\245\36\12\1\22"+
-    "\34\12\1\42\22\12\1\22\23\12\1\326\33\12\1\22"+
-    "\30\12\1\327\26\12\1\22\34\12\1\102\22\12\1\22"+
-    "\16\12\1\330\40\12\1\22\26\12\1\265\30\12\1\22"+
-    "\22\12\1\154\34\12\1\22\16\12\1\331\40\12\1\22"+
-    "\31\12\1\332\25\12\1\22\26\12\1\333\30\12\1\22"+
-    "\34\12\1\67\22\12\1\22\21\12\1\72\35\12\1\22"+
-    "\21\12\1\334\35\12\1\22\16\12\1\335\40\12\1\22"+
-    "\37\12\1\201\17\12\1\22\22\12\1\336\34\12\1\22"+
-    "\42\12\1\240\14\12\1\22\32\12\1\201\24\12\1\22"+
-    "\41\12\1\72\15\12\1\22\22\12\1\337\34\12\1\22"+
-    "\33\12\1\116\23\12\1\22\26\12\1\340\30\12\1\22"+
-    "\16\12\1\341\40\12\1\22\20\12\1\212\36\12\1\22"+
-    "\42\12\1\212\14\12\1\22\32\12\1\72\24\12\1\22"+
-    "\35\12\1\212\21\12\1\22\20\12\1\342\36\12\1\22"+
-    "\30\12\1\201\26\12\1\22\33\12\1\67\23\12\1\22"+
-    "\16\12\1\343\40\12\1\22\16\12\1\344\40\12\1\22"+
-    "\15\12\1\345\41\12\1\22\46\12\1\213\10\12\1\22"+
-    "\40\12\1\330\16\12\1\22\34\12\1\346\22\12\1\22"+
-    "\36\12\1\347\20\12\1\22\40\12\1\42\16\12\1\22"+
-    "\33\12\1\275\23\12\1\22\26\12\1\350\30\12\1\22"+
-    "\31\12\1\330\25\12\1\22\40\12\1\260\16\12\1\22"+
-    "\35\12\1\177\21\12\1\22\33\12\1\72\23\12\1\22"+
-    "\41\12\1\351\15\12\1\22\32\12\1\352\24\12\1\22"+
-    "\22\12\1\72\34\12\1\22\37\12\1\174\17\12\1\22"+
-    "\37\12\1\353\17\12\1\22\13\12\1\354\43\12\1\22"+
-    "\33\12\1\212\23\12\1\22\42\12\1\355\14\12\1\22"+
-    "\40\12\1\212\16\12\1\22\22\12\1\213\34\12\1\22"+
-    "\22\12\1\330\34\12\1\22\22\12\1\356\34\12\1\22"+
-    "\11\12\1\357\45\12\1\22\34\12\1\76\22\12\1\22"+
-    "\16\12\1\42\31\12\2\360\1\12\1\360\1\361\2\12"+
-    "\1\22\57\12\1\22\25\12\1\362\23\12\1\360\5\12"+
-    "\1\22\25\12\1\362\31\12\1\22\41\12\1\363\15\12"+
-    "\1\22\32\12\1\364\24\12\1\22\31\12\1\365\25\12"+
-    "\1\22\5\12\1\366\41\12";
+    "\1\10\37\4\1\0\2\6\1\0\2\6\3\0\1\11"+
+    "\2\0\1\12\1\13\1\14\36\15\1\16\1\17\1\3"+
+    "\1\16\1\17\1\3\1\16\1\20\6\16\1\0\36\16"+
+    "\2\4\1\0\2\4\1\0\6\4\1\0\41\4\1\5"+
+    "\1\6\1\4\1\5\1\6\6\4\1\0\40\4\1\0"+
+    "\2\6\1\0\2\6\47\0\6\12\1\21\1\12\1\22"+
+    "\1\23\15\12\1\24\1\25\1\12\1\26\1\12\1\27"+
+    "\1\12\1\30\1\31\1\12\1\32\1\33\1\34\1\35"+
+    "\1\36\1\12\1\37\1\40\1\41\3\12\16\0\1\42"+
+    "\36\0\10\12\1\22\44\12\74\0\36\15\2\16\1\0"+
+    "\2\16\1\0\1\16\1\0\6\16\1\0\36\16\2\43"+
+    "\1\0\2\43\1\0\1\43\1\0\45\43\10\12\1\22"+
+    "\10\12\1\44\33\12\2\22\4\12\2\22\1\45\44\22"+
+    "\10\12\1\22\1\12\2\46\3\12\36\46\10\12\1\22"+
+    "\35\12\1\47\16\12\1\22\33\12\1\50\1\12\1\51"+
+    "\2\12\1\52\13\12\1\22\26\12\1\53\25\12\1\22"+
+    "\33\12\1\54\20\12\1\22\2\12\1\36\17\12\1\55"+
+    "\14\12\1\56\14\12\1\22\31\12\1\57\1\60\21\12"+
+    "\1\22\16\12\1\61\7\12\1\62\25\12\1\22\22\12"+
+    "\1\63\31\12\1\22\16\12\1\53\35\12\1\22\30\12"+
+    "\1\36\3\12\1\64\17\12\1\22\22\12\1\65\11\12"+
+    "\1\66\2\12\1\67\14\12\1\22\16\12\1\70\1\71"+
+    "\1\12\1\36\1\72\1\73\1\12\1\74\1\75\6\12"+
+    "\1\36\16\12\1\22\30\12\1\36\13\12\2\43\1\0"+
+    "\2\43\1\0\1\43\1\76\45\43\10\12\1\22\12\12"+
+    "\1\77\31\12\2\22\4\12\2\22\1\100\44\22\10\12"+
+    "\1\22\1\12\2\46\2\12\1\101\36\46\10\12\1\22"+
+    "\37\12\1\102\14\12\1\22\21\12\1\103\32\12\1\22"+
+    "\37\12\1\104\14\12\1\22\41\12\1\36\12\12\1\22"+
+    "\33\12\1\105\1\12\1\106\16\12\1\22\16\12\1\107"+
+    "\35\12\1\22\31\12\1\110\22\12\1\22\24\12\1\51"+
+    "\27\12\1\22\34\12\1\111\17\12\1\22\17\12\1\112"+
+    "\34\12\1\22\32\12\1\113\21\12\1\22\37\12\1\114"+
+    "\14\12\1\22\37\12\1\115\14\12\1\22\30\12\1\116"+
+    "\23\12\1\22\16\12\1\117\35\12\1\22\43\12\1\120"+
+    "\10\12\1\22\17\12\1\120\34\12\1\22\33\12\1\50"+
+    "\20\12\1\22\42\12\1\121\11\12\1\22\33\12\1\122"+
+    "\20\12\1\22\22\12\1\123\31\12\1\22\37\12\1\120"+
+    "\14\12\1\22\7\12\1\124\34\12\2\22\4\12\2\22"+
+    "\1\100\5\22\1\125\36\22\10\12\1\22\26\12\1\126"+
+    "\25\12\1\22\43\12\1\36\10\12\1\22\37\12\1\127"+
+    "\14\12\1\22\37\12\1\130\14\12\1\22\31\12\1\36"+
+    "\22\12\1\22\21\12\1\131\32\12\1\22\40\12\1\132"+
+    "\13\12\1\22\22\12\1\110\31\12\1\22\27\12\1\51"+
+    "\24\12\1\22\16\12\1\51\35\12\1\22\26\12\1\127"+
+    "\25\12\1\22\22\12\1\133\31\12\1\22\32\12\1\36"+
+    "\21\12\1\22\30\12\1\134\23\12\1\22\37\12\1\135"+
+    "\14\12\1\22\33\12\1\136\20\12\1\22\16\12\1\137"+
+    "\35\12\1\22\14\12\1\140\37\12\1\22\20\12\1\120"+
+    "\33\12\1\22\33\12\1\117\20\12\1\22\22\12\1\141"+
+    "\31\12\1\22\37\12\1\51\14\12\1\22\20\12\1\136"+
+    "\33\12\1\22\22\12\1\36\31\12\1\22\16\12\1\142"+
+    "\35\12\1\22\37\12\1\36\14\12\1\22\21\12\1\36"+
+    "\32\12\1\22\15\12\1\143\36\12\1\22\35\12\1\36"+
+    "\16\12\1\22\35\12\1\144\16\12\1\22\13\12\1\145"+
+    "\40\12\1\22\22\12\1\146\31\12\1\22\11\12\1\147"+
+    "\42\12\1\22\16\12\1\36\26\12\2\150\1\12\1\150"+
+    "\1\151\2\12\1\22\54\12\1\22\25\12\1\152\20\12"+
+    "\1\150\5\12\1\22\25\12\1\152\26\12\1\22\37\12"+
+    "\1\153\14\12\1\22\31\12\1\154\22\12\1\22\30\12"+
+    "\1\155\23\12\1\22\5\12\1\156\36\12";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[11184];
+    int [] result = new int[4410];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -385,14 +286,12 @@ class HTMLScanner implements Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\3\0\3\1\1\0\1\1\2\0\2\11\3\1\4\0"+
-    "\2\1\5\0\1\1\5\0\2\1\1\0\1\1\1\0"+
-    "\1\1\2\0\1\11\20\0\1\1\11\0\1\1\15\0"+
-    "\1\1\26\0\1\1\1\0\1\1\3\0\1\11\2\0"+
-    "\1\1\17\0\1\1\52\0\1\1\5\0\1\1\16\0"+
-    "\1\1\5\0\1\1\25\0\1\1\27\0\1\1";
+    "\2\1\3\0\1\1\4\0\1\1\2\0\1\1\1\11"+
+    "\6\0\1\1\10\0\1\1\11\0\1\1\1\0\1\11"+
+    "\2\0\1\1\23\0\1\1\3\0\1\1\24\0\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[246];
+    int [] result = new int[110];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -469,6 +368,97 @@ class HTMLScanner implements Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
+
+  Map<String, Integer> openingTagStartSymbolMap = Map.ofEntries(
+    entry("a", MySymbolsClassName.TAG_A_OPENING_START),
+    entry("article", MySymbolsClassName.TAG_ARTICLE_OPENING_START),
+    entry("b", MySymbolsClassName.TAG_B_OPENING_START),
+    entry("body", MySymbolsClassName.TAG_BODY_OPENING_START),
+    entry("button", MySymbolsClassName.TAG_BUTTON_OPENING_START),
+    entry("div", MySymbolsClassName.TAG_DIV_OPENING_START),
+    entry("footer", MySymbolsClassName.TAG_FOOTER_OPENING_START),
+    entry("form", MySymbolsClassName.TAG_FORM_OPENING_START),
+    entry("h1", MySymbolsClassName.TAG_H1_OPENING_START),
+    entry("h2", MySymbolsClassName.TAG_H2_OPENING_START),
+    entry("h3", MySymbolsClassName.TAG_H3_OPENING_START),
+    entry("h4", MySymbolsClassName.TAG_H4_OPENING_START),
+    entry("h5", MySymbolsClassName.TAG_H5_OPENING_START),
+    entry("h6", MySymbolsClassName.TAG_H6_OPENING_START),
+    entry("head", MySymbolsClassName.TAG_HEAD_OPENING_START),
+    entry("header", MySymbolsClassName.TAG_HEADER_OPENING_START),
+    entry("html", MySymbolsClassName.TAG_HTML_OPENING_START),
+    entry("i", MySymbolsClassName.TAG_I_OPENING_START),
+    entry("label", MySymbolsClassName.TAG_LABEL_OPENING_START),
+    entry("li", MySymbolsClassName.TAG_LI_OPENING_START),
+    entry("nav", MySymbolsClassName.TAG_NAV_OPENING_START),
+    entry("ol", MySymbolsClassName.TAG_OL_OPENING_START),
+    entry("option", MySymbolsClassName.TAG_OPTION_OPENING_START),
+    entry("p", MySymbolsClassName.TAG_P_OPENING_START),
+    entry("select", MySymbolsClassName.TAG_SELECT_OPENING_START),
+    entry("span", MySymbolsClassName.TAG_SPAN_OPENING_START),
+    entry("style", MySymbolsClassName.TAG_STYLE_OPENING_START),
+    entry("table", MySymbolsClassName.TAG_TABLE_OPENING_START),
+    entry("tbody", MySymbolsClassName.TAG_TBODY_OPENING_START),
+    entry("td", MySymbolsClassName.TAG_TD_OPENING_START),
+    entry("textarea", MySymbolsClassName.TAG_TEXTAREA_OPENING_START),
+    entry("tfoot", MySymbolsClassName.TAG_TFOOT_OPENING_START),
+    entry("th", MySymbolsClassName.TAG_TH_OPENING_START),
+    entry("thead", MySymbolsClassName.TAG_THEAD_OPENING_START),
+    entry("title", MySymbolsClassName.TAG_TITLE_OPENING_START),
+    entry("tr", MySymbolsClassName.TAG_TR_OPENING_START),
+    entry("u", MySymbolsClassName.TAG_U_OPENING_START),
+    entry("ul", MySymbolsClassName.TAG_UL_OPENING_START)
+  );
+
+  Map<String, Integer> singleTagStartSymbolMap = Map.ofEntries(
+      entry("br", MySymbolsClassName.TAG_BR_OPENING),
+      entry("img", MySymbolsClassName.TAG_IMG_OPENING),
+      entry("input", MySymbolsClassName.TAG_INPUT_OPENING),
+      entry("link", MySymbolsClassName.TAG_LINK_OPENING),
+      entry("meta", MySymbolsClassName.TAG_META_OPENING)
+    );
+
+  Map<String, Integer> closingTagSymbolMap = Map.ofEntries(
+      entry("a", MySymbolsClassName.TAG_A_CLOSING),
+      entry("article", MySymbolsClassName.TAG_ARTICLE_CLOSING),
+      entry("b", MySymbolsClassName.TAG_B_CLOSING),
+      entry("body", MySymbolsClassName.TAG_BODY_CLOSING),
+      entry("button", MySymbolsClassName.TAG_BUTTON_CLOSING),
+      entry("div", MySymbolsClassName.TAG_DIV_CLOSING),
+      entry("footer", MySymbolsClassName.TAG_FOOTER_CLOSING),
+      entry("form", MySymbolsClassName.TAG_FORM_CLOSING),
+      entry("h1", MySymbolsClassName.TAG_H1_CLOSING),
+      entry("h2", MySymbolsClassName.TAG_H2_CLOSING),
+      entry("h3", MySymbolsClassName.TAG_H3_CLOSING),
+      entry("h4", MySymbolsClassName.TAG_H4_CLOSING),
+      entry("h5", MySymbolsClassName.TAG_H5_CLOSING),
+      entry("h6", MySymbolsClassName.TAG_H6_CLOSING),
+      entry("head", MySymbolsClassName.TAG_HEAD_CLOSING),
+      entry("header", MySymbolsClassName.TAG_HEADER_CLOSING),
+      entry("html", MySymbolsClassName.TAG_HTML_CLOSING),
+      entry("i", MySymbolsClassName.TAG_I_CLOSING),
+      entry("label", MySymbolsClassName.TAG_LABEL_CLOSING),
+      entry("li", MySymbolsClassName.TAG_LI_CLOSING),
+      entry("nav", MySymbolsClassName.TAG_NAV_CLOSING),
+      entry("ol", MySymbolsClassName.TAG_OL_CLOSING),
+      entry("option", MySymbolsClassName.TAG_OPTION_CLOSING),
+      entry("p", MySymbolsClassName.TAG_P_CLOSING),
+      entry("select", MySymbolsClassName.TAG_SELECT_CLOSING),
+      entry("span", MySymbolsClassName.TAG_SPAN_CLOSING),
+      entry("style", MySymbolsClassName.TAG_STYLE_CLOSING),
+      entry("table", MySymbolsClassName.TAG_TABLE_CLOSING),
+      entry("tbody", MySymbolsClassName.TAG_TBODY_CLOSING),
+      entry("td", MySymbolsClassName.TAG_TD_CLOSING),
+      entry("textarea", MySymbolsClassName.TAG_TEXTAREA_CLOSING),
+      entry("tfoot", MySymbolsClassName.TAG_TFOOT_CLOSING),
+      entry("th", MySymbolsClassName.TAG_TH_CLOSING),
+      entry("thead", MySymbolsClassName.TAG_THEAD_CLOSING),
+      entry("title", MySymbolsClassName.TAG_TITLE_CLOSING),
+      entry("tr", MySymbolsClassName.TAG_TR_CLOSING),
+      entry("u", MySymbolsClassName.TAG_U_CLOSING),
+      entry("ul", MySymbolsClassName.TAG_UL_CLOSING)
+    );
+
   StringBuffer string = new StringBuffer();
 
   ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
@@ -478,6 +468,28 @@ class HTMLScanner implements Scanner {
   }
   private Symbol symbol(int type, Object value) {
     return new Symbol(type, yyline, yycolumn, value);
+  }
+
+  private Integer getOpeningTagSymbol(String value) {
+      value = value.trim().substring(1).trim();
+      return openingTagStartSymbolMap.get(value);
+  }
+
+  private Integer getClosingTagSymbol(String value) {
+      value = value.trim().substring(2).trim();
+      value = value.substring(0, value.length()-1).trim();
+      return closingTagSymbolMap.get(value);
+  }
+
+  private Integer getSingleOpeningTagSymbol(String value) {
+      value = value.trim().substring(1).trim();
+      if(value.charAt(0) == '/') {
+          value = value.substring(1).trim();
+      }
+      if(value.charAt(value.length()-1) == '/') {
+          value = value.substring(0, value.length()-1);
+      }
+      return singleTagStartSymbolMap.get(value);
   }
 
 
@@ -926,7 +938,7 @@ class HTMLScanner implements Scanner {
           case 19: break;
           case 8:
             { yybegin(TAG_INSIDE);
-                                return symbol(MySymbolsClassName.TAG_OPENING_START, yytext());
+                                return symbol(getOpeningTagSymbol(yytext()));
             }
             // fall through
           case 20: break;
@@ -938,12 +950,12 @@ class HTMLScanner implements Scanner {
           case 21: break;
           case 10:
             { yybegin(TAG_INSIDE);
-                                  return symbol(MySymbolsClassName.SINGLE_TAG_START, yytext());
+                                  return symbol(getSingleOpeningTagSymbol(yytext()));
             }
             // fall through
           case 22: break;
           case 11:
-            { return symbol(MySymbolsClassName.TAG_CLOSING, yytext());
+            { return symbol(getClosingTagSymbol(yytext()));
             }
             // fall through
           case 23: break;

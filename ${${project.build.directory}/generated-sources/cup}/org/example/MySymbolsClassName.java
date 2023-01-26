@@ -8,31 +8,187 @@ package org.example;
 /** CUP generated interface containing symbol constants. */
 public interface MySymbolsClassName {
   /* terminals */
-  public static final int TAG_CLOSING = 4;
-  public static final int TAG_ATTRIBUTE_NAME = 7;
-  public static final int SINGLE_TAG_END = 6;
-  public static final int TAG_OPENING_START = 2;
+  public static final int TAG_H2_OPENING_START = 18;
+  public static final int TAG_I_CLOSING = 69;
+  public static final int TAG_H6_OPENING_START = 22;
+  public static final int TAG_OPTION_OPENING_START = 31;
+  public static final int TAG_TBODY_CLOSING = 80;
+  public static final int TAG_FORM_OPENING_START = 16;
+  public static final int TAG_TITLE_OPENING_START = 43;
+  public static final int TAG_B_OPENING_START = 11;
+  public static final int TAG_OL_OPENING_START = 30;
+  public static final int TAG_BUTTON_OPENING_START = 13;
+  public static final int TAG_HEAD_OPENING_START = 23;
+  public static final int TAG_LI_OPENING_START = 28;
+  public static final int TAG_LI_CLOSING = 71;
+  public static final int TAG_OL_CLOSING = 73;
+  public static final int SINGLE_TAG_END = 3;
+  public static final int TAG_SPAN_OPENING_START = 34;
+  public static final int TAG_UL_OPENING_START = 46;
+  public static final int TAG_H6_CLOSING = 65;
+  public static final int TAG_STYLE_OPENING_START = 35;
+  public static final int TAG_H4_CLOSING = 63;
+  public static final int TAG_TD_OPENING_START = 38;
+  public static final int TAG_THEAD_CLOSING = 85;
+  public static final int TAG_H2_CLOSING = 61;
+  public static final int TAG_P_OPENING_START = 32;
+  public static final int TAG_TH_OPENING_START = 41;
+  public static final int TAG_NAV_CLOSING = 72;
+  public static final int TAG_A_CLOSING = 52;
+  public static final int TAG_UL_CLOSING = 89;
+  public static final int TAG_ATTRIBUTE_VALUE = 5;
+  public static final int TAG_SELECT_OPENING_START = 33;
+  public static final int TAG_P_CLOSING = 75;
+  public static final int TAG_TR_OPENING_START = 44;
+  public static final int TAG_TBODY_OPENING_START = 37;
+  public static final int TAG_BR_OPENING = 47;
+  public static final int TAG_TEXTAREA_OPENING_START = 39;
+  public static final int TAG_ATTRIBUTE_NAME = 4;
+  public static final int EQUALITY = 7;
+  public static final int TAG_DIV_CLOSING = 57;
+  public static final int TAG_HEADER_OPENING_START = 24;
+  public static final int TAG_ARTICLE_CLOSING = 53;
+  public static final int TAG_LABEL_OPENING_START = 27;
+  public static final int TAG_H3_OPENING_START = 19;
+  public static final int TAG_SPAN_CLOSING = 77;
+  public static final int TAG_TFOOT_CLOSING = 83;
+  public static final int TAG_H1_OPENING_START = 17;
+  public static final int TAG_TR_CLOSING = 87;
+  public static final int TAG_FOOTER_OPENING_START = 15;
+  public static final int TAG_H5_OPENING_START = 21;
+  public static final int TAG_TFOOT_OPENING_START = 40;
+  public static final int TAG_FORM_CLOSING = 59;
+  public static final int TAG_THEAD_OPENING_START = 42;
+  public static final int TAG_TITLE_CLOSING = 86;
+  public static final int DOCTYPE = 8;
+  public static final int TAG_A_OPENING_START = 9;
+  public static final int TAG_U_CLOSING = 88;
+  public static final int TAG_I_OPENING_START = 26;
+  public static final int CHAR_SEQUENCE = 6;
+  public static final int TAG_TABLE_CLOSING = 79;
   public static final int EOF = 0;
+  public static final int TAG_INPUT_OPENING = 49;
+  public static final int TAG_BUTTON_CLOSING = 56;
+  public static final int TAG_H5_CLOSING = 64;
+  public static final int TAG_H3_CLOSING = 62;
+  public static final int TAG_SELECT_CLOSING = 76;
+  public static final int TAG_TABLE_OPENING_START = 36;
+  public static final int TAG_H1_CLOSING = 60;
+  public static final int TAG_B_CLOSING = 54;
+  public static final int TAG_STYLE_CLOSING = 78;
+  public static final int TAG_LINK_OPENING = 50;
   public static final int error = 1;
-  public static final int CHAR_SEQUENCE = 9;
-  public static final int TAG_OPENING_END = 3;
-  public static final int EQUALITY = 10;
-  public static final int SINGLE_TAG_START = 5;
-  public static final int DOCTYPE = 11;
-  public static final int TAG_ATTRIBUTE_VALUE = 8;
+  public static final int TAG_HEADER_CLOSING = 67;
+  public static final int TAG_IMG_OPENING = 48;
+  public static final int TAG_NAV_OPENING_START = 29;
+  public static final int TAG_BODY_CLOSING = 55;
+  public static final int TAG_U_OPENING_START = 45;
+  public static final int TAG_OPENING_END = 2;
+  public static final int TAG_HEAD_CLOSING = 66;
+  public static final int TAG_BODY_OPENING_START = 12;
+  public static final int TAG_HTML_OPENING_START = 25;
+  public static final int TAG_FOOTER_CLOSING = 58;
+  public static final int TAG_LABEL_CLOSING = 70;
+  public static final int TAG_TH_CLOSING = 84;
+  public static final int TAG_ARTICLE_OPENING_START = 10;
+  public static final int TAG_OPTION_CLOSING = 74;
+  public static final int TAG_META_OPENING = 51;
+  public static final int TAG_HTML_CLOSING = 68;
+  public static final int TAG_TD_CLOSING = 81;
+  public static final int TAG_TEXTAREA_CLOSING = 82;
+  public static final int TAG_H4_OPENING_START = 20;
+  public static final int TAG_DIV_OPENING_START = 14;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "TAG_OPENING_START",
   "TAG_OPENING_END",
-  "TAG_CLOSING",
-  "SINGLE_TAG_START",
   "SINGLE_TAG_END",
   "TAG_ATTRIBUTE_NAME",
   "TAG_ATTRIBUTE_VALUE",
   "CHAR_SEQUENCE",
   "EQUALITY",
-  "DOCTYPE"
+  "DOCTYPE",
+  "TAG_A_OPENING_START",
+  "TAG_ARTICLE_OPENING_START",
+  "TAG_B_OPENING_START",
+  "TAG_BODY_OPENING_START",
+  "TAG_BUTTON_OPENING_START",
+  "TAG_DIV_OPENING_START",
+  "TAG_FOOTER_OPENING_START",
+  "TAG_FORM_OPENING_START",
+  "TAG_H1_OPENING_START",
+  "TAG_H2_OPENING_START",
+  "TAG_H3_OPENING_START",
+  "TAG_H4_OPENING_START",
+  "TAG_H5_OPENING_START",
+  "TAG_H6_OPENING_START",
+  "TAG_HEAD_OPENING_START",
+  "TAG_HEADER_OPENING_START",
+  "TAG_HTML_OPENING_START",
+  "TAG_I_OPENING_START",
+  "TAG_LABEL_OPENING_START",
+  "TAG_LI_OPENING_START",
+  "TAG_NAV_OPENING_START",
+  "TAG_OL_OPENING_START",
+  "TAG_OPTION_OPENING_START",
+  "TAG_P_OPENING_START",
+  "TAG_SELECT_OPENING_START",
+  "TAG_SPAN_OPENING_START",
+  "TAG_STYLE_OPENING_START",
+  "TAG_TABLE_OPENING_START",
+  "TAG_TBODY_OPENING_START",
+  "TAG_TD_OPENING_START",
+  "TAG_TEXTAREA_OPENING_START",
+  "TAG_TFOOT_OPENING_START",
+  "TAG_TH_OPENING_START",
+  "TAG_THEAD_OPENING_START",
+  "TAG_TITLE_OPENING_START",
+  "TAG_TR_OPENING_START",
+  "TAG_U_OPENING_START",
+  "TAG_UL_OPENING_START",
+  "TAG_BR_OPENING",
+  "TAG_IMG_OPENING",
+  "TAG_INPUT_OPENING",
+  "TAG_LINK_OPENING",
+  "TAG_META_OPENING",
+  "TAG_A_CLOSING",
+  "TAG_ARTICLE_CLOSING",
+  "TAG_B_CLOSING",
+  "TAG_BODY_CLOSING",
+  "TAG_BUTTON_CLOSING",
+  "TAG_DIV_CLOSING",
+  "TAG_FOOTER_CLOSING",
+  "TAG_FORM_CLOSING",
+  "TAG_H1_CLOSING",
+  "TAG_H2_CLOSING",
+  "TAG_H3_CLOSING",
+  "TAG_H4_CLOSING",
+  "TAG_H5_CLOSING",
+  "TAG_H6_CLOSING",
+  "TAG_HEAD_CLOSING",
+  "TAG_HEADER_CLOSING",
+  "TAG_HTML_CLOSING",
+  "TAG_I_CLOSING",
+  "TAG_LABEL_CLOSING",
+  "TAG_LI_CLOSING",
+  "TAG_NAV_CLOSING",
+  "TAG_OL_CLOSING",
+  "TAG_OPTION_CLOSING",
+  "TAG_P_CLOSING",
+  "TAG_SELECT_CLOSING",
+  "TAG_SPAN_CLOSING",
+  "TAG_STYLE_CLOSING",
+  "TAG_TABLE_CLOSING",
+  "TAG_TBODY_CLOSING",
+  "TAG_TD_CLOSING",
+  "TAG_TEXTAREA_CLOSING",
+  "TAG_TFOOT_CLOSING",
+  "TAG_TH_CLOSING",
+  "TAG_THEAD_CLOSING",
+  "TAG_TITLE_CLOSING",
+  "TAG_TR_CLOSING",
+  "TAG_U_CLOSING",
+  "TAG_UL_CLOSING"
   };
 }
 

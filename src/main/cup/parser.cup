@@ -27,16 +27,48 @@ parser code {:
 
 /* Preliminaries to set up and use the scanner.  */
 //init with {: scanner.init();              :};
-scan with {: return this.getScanner().next_token(); :};
+scan with {:
+    var token = this.getScanner().next_token();
+//    System.out.println("Token type: " + MySymbolsClassName.terminalNames[token.sym] + ", Token value: *" + token.value + "*");
+    return token;
+:};
 
 
 
 /* Terminals (tokens returned by the scanner). */
-terminal String           TAG_OPENING_START, TAG_OPENING_END, TAG_CLOSING, SINGLE_TAG_START, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE;
+terminal String           TAG_OPENING_END, SINGLE_TAG_END, TAG_ATTRIBUTE_NAME, TAG_ATTRIBUTE_VALUE, CHAR_SEQUENCE, EQUALITY, DOCTYPE,
 
+    TAG_A_OPENING_START, TAG_ARTICLE_OPENING_START, TAG_B_OPENING_START, TAG_BODY_OPENING_START, TAG_BUTTON_OPENING_START, TAG_DIV_OPENING_START, TAG_FOOTER_OPENING_START, TAG_FORM_OPENING_START,
+    TAG_H1_OPENING_START, TAG_H2_OPENING_START, TAG_H3_OPENING_START, TAG_H4_OPENING_START, TAG_H5_OPENING_START, TAG_H6_OPENING_START, TAG_HEAD_OPENING_START, TAG_HEADER_OPENING_START, TAG_HTML_OPENING_START,
+    TAG_I_OPENING_START, TAG_LABEL_OPENING_START, TAG_LI_OPENING_START, TAG_NAV_OPENING_START, TAG_OL_OPENING_START, TAG_OPTION_OPENING_START, TAG_P_OPENING_START, TAG_SELECT_OPENING_START, TAG_SPAN_OPENING_START,
+    TAG_STYLE_OPENING_START, TAG_TABLE_OPENING_START, TAG_TBODY_OPENING_START, TAG_TD_OPENING_START, TAG_TEXTAREA_OPENING_START, TAG_TFOOT_OPENING_START, TAG_TH_OPENING_START, TAG_THEAD_OPENING_START,
+    TAG_TITLE_OPENING_START, TAG_TR_OPENING_START, TAG_U_OPENING_START, TAG_UL_OPENING_START,
+    
+    TAG_BR_OPENING, TAG_IMG_OPENING, TAG_INPUT_OPENING, TAG_LINK_OPENING, TAG_META_OPENING,
+    
+    TAG_A_CLOSING, TAG_ARTICLE_CLOSING, TAG_B_CLOSING, TAG_BODY_CLOSING, TAG_BUTTON_CLOSING, TAG_DIV_CLOSING, TAG_FOOTER_CLOSING, TAG_FORM_CLOSING, TAG_H1_CLOSING, TAG_H2_CLOSING, TAG_H3_CLOSING, TAG_H4_CLOSING,
+    TAG_H5_CLOSING, TAG_H6_CLOSING, TAG_HEAD_CLOSING, TAG_HEADER_CLOSING, TAG_HTML_CLOSING, TAG_I_CLOSING, TAG_LABEL_CLOSING, TAG_LI_CLOSING, TAG_NAV_CLOSING, TAG_OL_CLOSING, TAG_OPTION_CLOSING, TAG_P_CLOSING,
+    TAG_SELECT_CLOSING, TAG_SPAN_CLOSING, TAG_STYLE_CLOSING, TAG_TABLE_CLOSING, TAG_TBODY_CLOSING, TAG_TD_CLOSING, TAG_TEXTAREA_CLOSING, TAG_TFOOT_CLOSING, TAG_TH_CLOSING, TAG_THEAD_CLOSING, TAG_TITLE_CLOSING,
+    TAG_TR_CLOSING, TAG_U_CLOSING, TAG_UL_CLOSING;
 
 /* Non terminals */
-non terminal String            document, tag, tag_opening, tag_content, single_tag, tag_attributes, tag_attribute, tag_closing, doctype;
+non terminal String            document, tag_attributes, tag_attribute, doctype, single_tag_end,
+
+    tag_a, tag_article, tag_b, tag_body, tag_button, tag_div, tag_footer, tag_form, 
+    tag_h1, tag_h2, tag_h3, tag_h4, tag_h5, tag_h6, tag_head, tag_header, tag_html, tag_i, tag_label, tag_li, tag_nav, tag_ol, tag_option, tag_p, tag_select, tag_span,
+    tag_style, tag_table, tag_tbody, tag_td, tag_textarea, tag_tfoot, tag_th, tag_thead, tag_title, tag_tr, tag_u, tag_ul,
+    
+    tag_br, tag_img, tag_input, tag_link, tag_meta,
+    
+    tag_a_opening, tag_article_opening, tag_b_opening, tag_body_opening, tag_button_opening, tag_div_opening, tag_footer_opening, tag_form_opening,
+    tag_h1_opening, tag_h2_opening, tag_h3_opening, tag_h4_opening, tag_h5_opening, tag_h6_opening, tag_head_opening, tag_header_opening, tag_html_opening, tag_i_opening, tag_label_opening, tag_li_opening,
+    tag_nav_opening, tag_ol_opening, tag_option_opening, tag_p_opening, tag_select_opening, tag_span_opening, tag_style_opening, tag_table_opening, tag_tbody_opening, tag_td_opening, tag_textarea_opening,
+    tag_tfoot_opening, tag_th_opening, tag_thead_opening, tag_title_opening, tag_tr_opening, tag_u_opening, tag_ul_opening,
+
+    tag_body_content, tag_form_content, tag_head_content, tag_html_content, tag_li_content, tag_ol_content, tag_option_content, tag_select_content, tag_style_content, tag_table_content, tag_tbody_content,
+    tag_textarea_content, tag_tfoot_content, tag_thead_content, tag_title_content, tag_tr_content, tag_ul_content,
+    
+    tag_head_content_tag, tag_body_content_tag, tag_form_content_tag;
 
 /* Precedences */
 //precedence left PLUS, MINUS;
@@ -44,21 +76,129 @@ non terminal String            document, tag, tag_opening, tag_content, single_t
 //precedence left UMINUS;
 
 /* The grammar */
-document ::= doctype document | tag document | CHAR_SEQUENCE document | ;
-tag ::=
-        tag_opening:e1 tag_content tag_closing:e2 {:
-            RESULT = e1;
-            e2 = e2.substring(0, 1) + e2.substring(2, e2.length());
-            if(!e2.equals(e1)) {
-                System.out.println("błąd");
-            }
-        :}
-        | single_tag;
-single_tag ::= SINGLE_TAG_START:e1 tag_attributes SINGLE_TAG_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :}
-        | SINGLE_TAG_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1 + e2; System.out.println(getIndent() + RESULT); :};
-tag_opening ::= TAG_OPENING_START:e1 tag_attributes TAG_OPENING_END:e2 {: RESULT = e1.trim() + e2.trim(); System.out.println(getIndent() + RESULT); incrementIndentCount(); :};
+document ::= doctype tag_html | ;
 tag_attributes ::= tag_attribute tag_attributes | ;
 tag_attribute ::= TAG_ATTRIBUTE_NAME EQUALITY TAG_ATTRIBUTE_VALUE | TAG_ATTRIBUTE_NAME;
-tag_content ::= CHAR_SEQUENCE tag_content | tag tag_content | ;
-tag_closing ::= TAG_CLOSING:e1 {: RESULT = e1; decrementIndentCount(); System.out.println(getIndent() + RESULT); :};
+
 doctype ::= DOCTYPE:e1  {: RESULT = e1; System.out.println(getIndent() + RESULT); :};
+
+//tag ::= tag_a | tag_article | tag_b | tag_body | tag_button | tag_div | tag_footer | tag_form
+//        | tag_h1 | tag_h2 | tag_h3 | tag_h4 | tag_h5 | tag_h6 | tag_head | tag_header | tag_html | tag_i | tag_label | tag_li | tag_nav | tag_ol
+//        | tag_option | tag_p | tag_select | tag_span | tag_style | tag_table | tag_tbody | tag_td | tag_textarea | tag_tfoot | tag_th | tag_thead
+//        | tag_title | tag_tr | tag_u | tag_ul | tag_br | tag_img | tag_input | tag_link | tag_meta;
+
+tag_a ::= tag_a_opening tag_body_content TAG_A_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</a>"); :};
+tag_article ::= tag_article_opening tag_body_content TAG_ARTICLE_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</article>"); :};
+tag_b ::= tag_b_opening tag_body_content TAG_B_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</b>"); :};
+tag_body ::= tag_body_opening tag_body_content TAG_BODY_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</body>"); :};
+tag_button ::= tag_button_opening tag_body_content TAG_BUTTON_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</button>"); :};
+tag_div ::= tag_div_opening tag_body_content TAG_DIV_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</div>"); :};
+tag_footer ::= tag_footer_opening tag_body_content TAG_FOOTER_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</footer>"); :};
+tag_form ::= tag_form_opening tag_form_content TAG_FORM_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</form>"); :};
+tag_h1 ::= tag_h1_opening tag_body_content TAG_H1_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h1>"); :};
+tag_h2 ::= tag_h2_opening tag_body_content TAG_H2_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h2>"); :};
+tag_h3 ::= tag_h3_opening tag_body_content TAG_H3_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h3>"); :};
+tag_h4 ::= tag_h4_opening tag_body_content TAG_H4_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h4>"); :};
+tag_h5 ::= tag_h5_opening tag_body_content TAG_H5_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h5>"); :};
+tag_h6 ::= tag_h6_opening tag_body_content TAG_H6_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</h6>"); :};
+tag_head ::= tag_head_opening tag_head_content TAG_HEAD_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</head>"); :};
+tag_header ::= tag_header_opening tag_body_content TAG_HEADER_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</header>"); :};
+tag_html ::= tag_html_opening tag_html_content TAG_HTML_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</html>"); :};
+tag_i ::= tag_i_opening tag_body_content TAG_I_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</i>"); :};
+tag_label ::= tag_label_opening tag_body_content TAG_LABEL_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</label>"); :};
+tag_li ::= tag_li_opening tag_li_content TAG_LI_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</li>"); :};
+tag_nav ::= tag_nav_opening tag_body_content TAG_NAV_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</nav>"); :};
+tag_ol ::= tag_ol_opening tag_ol_content TAG_OL_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</ol>"); :};
+tag_option ::= tag_option_opening tag_option_content TAG_OPTION_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</option>"); :};
+tag_p ::= tag_p_opening tag_body_content TAG_P_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</p>"); :};
+tag_select ::= tag_select_opening tag_select_content TAG_SELECT_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</select>"); :};
+tag_span ::= tag_span_opening tag_body_content TAG_SPAN_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</span>"); :};
+tag_style ::= tag_style_opening tag_style_content TAG_STYLE_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</style>"); :};
+tag_table ::= tag_table_opening tag_table_content TAG_TABLE_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</table>"); :};
+tag_tbody ::= tag_tbody_opening tag_tbody_content TAG_TBODY_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</tbody>"); :};
+tag_td ::= tag_td_opening tag_body_content TAG_TD_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</td>"); :};
+tag_textarea ::= tag_textarea_opening tag_textarea_content TAG_TEXTAREA_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</textarea>"); :};
+tag_tfoot ::= tag_tfoot_opening tag_tfoot_content TAG_TFOOT_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</tfoot>"); :};
+tag_th ::= tag_th_opening tag_body_content TAG_TH_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</th>"); :};
+tag_thead ::= tag_thead_opening tag_thead_content TAG_THEAD_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</thead>"); :};
+tag_title ::= tag_title_opening tag_title_content TAG_TITLE_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</title>"); :};
+tag_tr ::= tag_tr_opening tag_tr_content TAG_TR_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</tr>"); :};
+tag_u ::= tag_u_opening tag_body_content TAG_U_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</u>"); :};
+tag_ul ::= tag_ul_opening tag_ul_content TAG_UL_CLOSING {: decrementIndentCount(); System.out.println(getIndent() + "</ul>"); :};
+
+tag_br ::= TAG_BR_OPENING tag_attributes single_tag_end {: System.out.println(getIndent() + "<br>"); :};
+tag_img ::= TAG_IMG_OPENING tag_attributes single_tag_end {: System.out.println(getIndent() + "<img>"); :};
+tag_input ::= TAG_INPUT_OPENING tag_attributes single_tag_end {: System.out.println(getIndent() + "<input>"); :};
+tag_link ::= TAG_LINK_OPENING tag_attributes single_tag_end {: System.out.println(getIndent() + "<link>"); :};
+tag_meta ::= TAG_META_OPENING tag_attributes single_tag_end {: System.out.println(getIndent() + "<meta>"); :};
+
+single_tag_end ::= TAG_OPENING_END | SINGLE_TAG_END;
+
+tag_a_opening ::= TAG_A_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<a>"); incrementIndentCount(); :};
+tag_article_opening ::= TAG_ARTICLE_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<article>"); incrementIndentCount(); :};
+tag_b_opening ::= TAG_B_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<b>"); incrementIndentCount(); :};
+tag_body_opening ::= TAG_BODY_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<body>"); incrementIndentCount(); :};
+tag_button_opening ::= TAG_BUTTON_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<button>"); incrementIndentCount(); :};
+tag_div_opening ::= TAG_DIV_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<div>"); incrementIndentCount(); :};
+tag_footer_opening ::= TAG_FOOTER_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<footer>"); incrementIndentCount(); :};
+tag_form_opening ::= TAG_FORM_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<form>"); incrementIndentCount(); :};
+tag_h1_opening ::= TAG_H1_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h1>"); incrementIndentCount(); :};
+tag_h2_opening ::= TAG_H2_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h2>"); incrementIndentCount(); :};
+tag_h3_opening ::= TAG_H3_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h3>"); incrementIndentCount(); :};
+tag_h4_opening ::= TAG_H4_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h4>"); incrementIndentCount(); :};
+tag_h5_opening ::= TAG_H5_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h5>"); incrementIndentCount(); :};
+tag_h6_opening ::= TAG_H6_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<h6>"); incrementIndentCount(); :};
+tag_head_opening ::= TAG_HEAD_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<head>"); incrementIndentCount(); :};
+tag_header_opening ::= TAG_HEADER_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<header>"); incrementIndentCount(); :};
+tag_html_opening ::= TAG_HTML_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<html>"); incrementIndentCount(); :};
+tag_i_opening ::= TAG_I_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<i>"); incrementIndentCount(); :};
+tag_label_opening ::= TAG_LABEL_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<label>"); incrementIndentCount(); :};
+tag_li_opening ::= TAG_LI_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<li>"); incrementIndentCount(); :};
+tag_nav_opening ::= TAG_NAV_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<nav>"); incrementIndentCount(); :};
+tag_ol_opening ::= TAG_OL_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<ol>"); incrementIndentCount(); :};
+tag_option_opening ::= TAG_OPTION_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<option>"); incrementIndentCount(); :};
+tag_p_opening ::= TAG_P_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<p>"); incrementIndentCount(); :};
+tag_select_opening ::= TAG_SELECT_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<select>"); incrementIndentCount(); :};
+tag_span_opening ::= TAG_SPAN_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<span>"); incrementIndentCount(); :};
+tag_style_opening ::= TAG_STYLE_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<style>"); incrementIndentCount(); :};
+tag_table_opening ::= TAG_TABLE_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<table>"); incrementIndentCount(); :};
+tag_tbody_opening ::= TAG_TBODY_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<tbody>"); incrementIndentCount(); :};
+tag_td_opening ::= TAG_TD_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<td>"); incrementIndentCount(); :};
+tag_textarea_opening ::= TAG_TEXTAREA_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<textarea>"); incrementIndentCount(); :};
+tag_tfoot_opening ::= TAG_TFOOT_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<tfoot>"); incrementIndentCount(); :};
+tag_th_opening ::= TAG_TH_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<th>"); incrementIndentCount(); :};
+tag_thead_opening ::= TAG_THEAD_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<thead>"); incrementIndentCount(); :};
+tag_title_opening ::= TAG_TITLE_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<title>"); incrementIndentCount(); :};
+tag_tr_opening ::= TAG_TR_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<tr>"); incrementIndentCount(); :};
+tag_u_opening ::= TAG_U_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<u>"); incrementIndentCount(); :};
+tag_ul_opening ::= TAG_UL_OPENING_START tag_attributes TAG_OPENING_END {: System.out.println(getIndent() + "<ul>"); incrementIndentCount(); :};
+
+
+
+tag_html_content ::= tag_head tag_body | tag_body tag_head | tag_head | tag_body | ;
+tag_head_content ::= tag_head_content_tag tag_head_content | ; 
+tag_head_content_tag ::= tag_title | tag_style | tag_meta | tag_link;
+tag_body_content ::= tag_body_content_tag tag_body_content | CHAR_SEQUENCE tag_body_content | ;
+tag_body_content_tag ::= tag_a | tag_article | tag_b | tag_button | tag_div | tag_footer | tag_form | tag_h1 | tag_h2 | tag_h3 | tag_h4 | tag_h5 | tag_h6 | tag_header
+                     | tag_i | tag_label | tag_nav | tag_ol | tag_p | tag_span | tag_table | tag_tbody | tag_td | tag_tfoot | tag_u | tag_ul | tag_br | tag_img;
+tag_option_content ::= CHAR_SEQUENCE tag_option_content | ;
+tag_select_content ::= tag_option tag_select_content | ;
+tag_form_content ::= tag_form_content_tag tag_form_content | tag_body_content_tag tag_form_content | ;
+tag_form_content_tag ::= tag_input | tag_textarea | tag_select;
+tag_title_content ::= CHAR_SEQUENCE tag_title_content | ;
+tag_style_content ::= CHAR_SEQUENCE tag_style_content | ;
+tag_textarea_content ::= CHAR_SEQUENCE tag_textarea_content | ;
+tag_table_content ::= tag_thead tag_tbody tag_tfoot | tag_thead tag_tfoot | tag_thead tag_tbody | tag_tbody tag_tfoot | tag_thead | tag_tbody | tag_tfoot | ;
+tag_thead_content ::= tag_tr tag_thead_content | ;
+tag_tfoot_content ::= tag_tr tag_thead_content | ;
+tag_tbody_content ::= tag_tr tag_tbody_content | ;
+tag_tr_content ::= tag_td tag_tr_content | tag_th tag_tr_content | ;
+tag_ul_content ::= tag_li tag_ul_content | ;
+tag_ol_content ::= tag_li tag_ol_content | ;
+tag_li_content ::= CHAR_SEQUENCE tag_li_content | ;
+
+
+
+
+
+    
